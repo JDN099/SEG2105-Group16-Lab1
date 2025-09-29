@@ -114,11 +114,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btn_mult:
-                addNumber("×");
+                addNumber("*");
                 break;
 
             case R.id.btn_division:
-                addNumber("÷");
+                addNumber("/");
                 break;
 
             case R.id.btn_plus:
