@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import java.math.BigDecimal;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -18,11 +20,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView text_display;
 
     // This is to evaluate the math expression
+    ScriptEngine engine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        engine = new ScriptEngineManager().getEngineByName("rhino");
 
         btn0 = findViewById(R.id.btn0);
         btn1 = findViewById(R.id.btn1);
@@ -138,9 +142,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private String evaluate(String expression) throws Exception {
-        String result = evaluate(expression);
+        String result = engine.eval(expression).toString();
         BigDecimal decimal = new BigDecimal(result);
-        return decimal.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString();
+        return decimal.setScale(1, BigDecimal.ROUND_HALF_UP).toPlainString();
     }
 
     private void addNumber(String number) {
