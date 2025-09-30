@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btn_clear:
+                lastResult = null;
                 clear_display();
                 break;
         }
@@ -167,7 +168,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void clear_display() {
-        lastResult = null;
         text_display.setText("");
     }
 }
