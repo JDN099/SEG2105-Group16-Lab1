@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String evaluate(String expression) throws Exception {
         String result = engine.eval(expression).toString();
         BigDecimal decimal = new BigDecimal(result);
-        return decimal.setScale(1, BigDecimal.ROUND_HALF_UP).toPlainString();
+        return decimal.setScale(8, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toPlainString();
     }
 
     private void addNumber(String number) {
