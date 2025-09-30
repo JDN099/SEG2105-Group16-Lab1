@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     lastResult = result;
                 } catch (Exception e) {
                     text_display.setText("Error");
+                    lastResult = null;
                 }
                 break;
 
@@ -159,11 +160,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (lastResult != null && "+-*/".contains(number)) {
             text_display.setText(lastResult);
             lastResult = null;
+        } else {
+            lastResult = null;
         }
         text_display.setText(text_display.getText() + number);
     }
 
     private void clear_display() {
+        lastResult = null;
         text_display.setText("");
     }
 }
