@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn_plus, btn_minus, btn_mult, btn_division, btn_dot, btn_clear, btn_equal;
     TextView text_display;
     private boolean clearText = false;
+    private String lastResult = null;
 
     // This is to evaluate the math expression
     ScriptEngine engine;
@@ -132,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     result = evaluate(text_display.getText().toString());
                     text_display.setText(result);
+                    lastResult = result;
                 } catch (Exception e) {
                     text_display.setText("Error");
                 }
@@ -153,6 +155,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (clearText) {
             clear_display();
             clearText = false;
+        }
+        if (lastResult != null && "+-*/".contains(number)) {
+            text_display.setText(lastResult);
+            lastResult = null;
         }
         text_display.setText(text_display.getText() + number);
     }
