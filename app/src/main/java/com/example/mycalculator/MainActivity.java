@@ -18,6 +18,7 @@ import javax.script.ScriptEngineManager;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn_plus, btn_minus, btn_mult, btn_division, btn_dot, btn_clear, btn_equal;
     TextView text_display;
+    private boolean clearText = false;
 
     // This is to evaluate the math expression
     ScriptEngine engine;
@@ -127,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_equal:
                 String result = null;
+                clearText = true;
                 try {
                     result = evaluate(text_display.getText().toString());
                     text_display.setText(result);
@@ -148,6 +150,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addNumber(String number) {
+        if (clearText) {
+            clear_display();
+            clearText = false;
+        }
         text_display.setText(text_display.getText() + number);
     }
 
